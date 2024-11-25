@@ -1,0 +1,111 @@
+{% extends './index.html' %}
+
+{% block title %}
+Medicamentos
+{% endblock %}
+
+{% block content %}
+<div class="modal fade" id="modalformmedicamentos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form-medicamentos" action="" method="post">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre medicamento</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Presentación del medicamento</label>
+                        <input type="text" class="form-control" id="presentacion" name="presentacion">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Concentración en ml del
+                            medicamento</label>
+                        <input type="number" class="form-control" id="concentracion_ml" name="concentracion_ml">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Concentración en mg del
+                            medicamento</label>
+                        <input type="number" class="form-control" id="concentracion_mg" name="concentracion_mg">
+                    </div>
+                    <!-- <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="adulo" name="adulto">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Solo adulto
+                        </label>
+                    </div> -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="btn-guardar">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex justify-content-center mt-5">
+    <h1 class="display-2">Gestionar medicamentos</h1>
+</div>
+<div class="d-flex justify-content-end m-2">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalformmedicamentos">
+        <div class="d-flex">
+            <span class="material-symbols-outlined">
+                add
+            </span>
+            Agregar medicamentos
+        </div>
+    </button>
+</div>
+<div class="d-flex justify-content-center mt-5">
+    <div class="w-100">
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Presentación</th>
+                    <th>Concentración en ml</th>
+                    <th>Concentración en mg</th>
+                </tr>
+            </thead>
+            <tbody id="tb-medicamentos">
+                {% for item in lista %}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.presentacion}}</td>
+                        <td>{{item.concentracion_ml}}</td>
+                        <td>{{item.concentracion_mg}}</td>
+                        <!-- <td>
+                            {% if item.adulto %}
+                                <span class="material-symbols-outlined" style="color: green;">
+                                    check
+                                </span>
+                            {% else %}
+                                <span class="material-symbols-outlined" style="color: red;">
+                                    close
+                                </span>
+                            {% endif %}
+                        </td> -->
+                        <!-- <td>
+                            <button type="button" class="btn btn-danger">
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </button>
+                        </td> -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="{{ url_for('static',filename='js/medicamentos/index.js' ) }}"></script>
+{% endblock %}
